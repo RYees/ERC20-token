@@ -88,7 +88,9 @@ contract('DappToken', function(accounts){
         return tokenInstance.approve(spendingAccount, 10, {from: fromAccount});
     }).then(function(receipt){
         // Try transferring something larger than the sender's balance
-        return tokenInstance.transferFrom(fromAccount, toAccount, 9999, {from: spendingAccount });
+        return tokenInstance.transferFrom(fromAccount, toAccount, 9999, {from: spendingAccount }); // we basically saying here is that if the value(9999) is greater than the senders balance(in this case it is 100) .
+                                                                                                   // the error message should contain the 'revert' message so that is what we are checking by saying indexOf('revert') so since 9999 > 100 the require method will throw the error message that contain revert
+                                                                                                   // which means the test passed since that how we wrote the test to pass, that is the error message is revert for a value of 9999
     }).then(assert.fail).catch(function(error) {
         assert(error.message.indexOf('revert') >= 0, 'cannot transfer value larger than balance');
         // Try transferring something larger than the approved amount
