@@ -6,6 +6,7 @@ so this project about create your own cryptocurrency in ethereum blockchain by f
 ## Implementation
 Frontend Application
 * using javascript
+
 Backend Application
 * Building smart contracts using truffle, ganache
 
